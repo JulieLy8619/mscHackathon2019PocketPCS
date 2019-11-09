@@ -54,5 +54,7 @@ namespace pcsHackathon2019.Models
         {
             this.Name = name;
         }
+
+        public Budget() { }
     }
 }

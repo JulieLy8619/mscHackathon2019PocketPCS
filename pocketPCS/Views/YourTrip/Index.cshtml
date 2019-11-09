@@ -2,13 +2,15 @@
 @using pcsHackathon2019.Models
 @model Move
 @{
-    ViewData["Title"] = "Your Plan";
+    ViewData["Title"] = "Plan Your Move";
 }
 
-<h2>YourPlan</h2>
+<h2>Plan your Move</h2>
 
 
 <form asp-controller="YourTrip" asp-action="Index" method="post">
-    <input asp-for="StartDate" /> <br />
+    
+    <p>Enter travel start date <input asp-for="StartDate" /></p>
+    <p>Enter travel end date <input asp-for="EndDate" /></p>
     <button type="submit">Submit</button>
 </form>

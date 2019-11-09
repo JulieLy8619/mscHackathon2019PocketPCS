@@ -2,13 +2,17 @@
     ViewData["Title"] = "Pocket PCS";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome To Pocket PCS</h1>
+    <div class="text-center">
+        <h1 class="display-4">Welcome To Pocket PCS</h1>
 
-    <p>Are you stressed because of an upcoming Permanent Change of Station (PCS)?</p>
-    <p>Pocket PCS will help guide your way. Just enter your current base, and enter the base you are going to: </p>
-    <p>Pocket PCS will do the rest of the work for you.</p>
+        <img src="~/Images/PocketPCS.jpg" alt="family unpacking boxes for a new move" style="width: 750px">
 
-    @Html.ActionLink("Calculate your move!", "Index", "YourTrip")
+        <p style="margin-top: 15px">Are you stressed because of an upcoming Permanent Change of Station (PCS)?</p>
+        <p>Pocket PCS will help guide your way. Just enter your current base and enter the base you are going to </p>
+        <p>Pocket PCS will do the rest of the work for you!</p>
 
-</div>
+        <button type="button" style="background-color: #926758; border: 1px solid black; border-radius: 5px;">
+            @Html.ActionLink("Calculate your move!", "Index", "YourTrip")
+        </button>
+
+    </div>

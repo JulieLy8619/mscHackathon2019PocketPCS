@@ -15,7 +15,7 @@ namespace pocketPCS.Data
         {
         }
 
-        public DbSet<User> Users { get; set; }
+        public DbSet<User> PocketUsersTable { get; set; }
         public DbSet<Move> Moves { get; set; }
         public DbSet<Budget> Budgets { get; set; }
         public DbSet<AdditionalCost> BoardTable { get; set; }

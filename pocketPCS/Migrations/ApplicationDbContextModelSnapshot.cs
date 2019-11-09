@@ -3,17 +3,15 @@ using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
-using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using pocketPCS.Data;
 
-namespace pocketPCS.Data.Migrations
+namespace pocketPCS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191109181852_NewKeys")]
-    partial class NewKeys
+    partial class ApplicationDbContextModelSnapshot : ModelSnapshot
     {
-        protected override void BuildTargetModel(ModelBuilder modelBuilder)
+        protected override void BuildModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -221,30 +219,18 @@ namespace pocketPCS.Data.Migrations
                     b.ToTable("AspNetUserTokens");
                 });
 
-            modelBuilder.Entity("pcsHackathon2019.Models.Allowance", b =>
-                {
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("BudgetId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Cost")
-                        .HasColumnType("float");
-
-                    b.HasKey("Name");
-
-                    b.HasIndex("BudgetId");
-
-                    b.ToTable("Allowance");
-                });
-
             modelBuilder.Entity("pcsHackathon2019.Models.Budget", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("int")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<double>("Allowances")
+                        .HasColumnType("float");
+
+                    b.Property<double>("Expenses")
+                        .HasColumnType("float");
 
                     b.Property<string>("Name")
                         .HasColumnType("nvarchar(max)");
@@ -278,24 +264,6 @@ namespace pocketPCS.Data.Migrations
                     b.HasIndex("ThreadID");
 
                     b.ToTable("CommentTable");
-                });
-
-            modelBuilder.Entity("pcsHackathon2019.Models.Expense", b =>
-                {
-                    b.Property<string>("Name")
-                        .HasColumnType("nvarchar(450)");
-
-                    b.Property<int?>("BudgetId")
-                        .HasColumnType("int");
-
-                    b.Property<double>("Cost")
-                        .HasColumnType("float");
-
-                    b.HasKey("Name");
-
-                    b.HasIndex("BudgetId");
-
-                    b.ToTable("Expense");
                 });
 
             modelBuilder.Entity("pcsHackathon2019.Models.Move", b =>
@@ -380,7 +348,7 @@ namespace pocketPCS.Data.Migrations
 
                     b.HasKey("Id");
 
-                    b.ToTable("Users");
+                    b.ToTable("PocketUsersTable");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<string>", b =>
@@ -434,13 +402,6 @@ namespace pocketPCS.Data.Migrations
                         .IsRequired();
                 });
 
-            modelBuilder.Entity("pcsHackathon2019.Models.Allowance", b =>
-                {
-                    b.HasOne("pcsHackathon2019.Models.Budget", "Budget")
-                        .WithMany("Allowances")
-                        .HasForeignKey("BudgetId");
-                });
-
             modelBuilder.Entity("pcsHackathon2019.Models.Comment", b =>
                 {
                     b.HasOne("pcsHackathon2019.Models.Thread", "Thread")
@@ -448,13 +409,6 @@ namespace pocketPCS.Data.Migrations
                         .HasForeignKey("ThreadID")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
-                });
-
-            modelBuilder.Entity("pcsHackathon2019.Models.Expense", b =>
-                {
-                    b.HasOne("pcsHackathon2019.Models.Budget", "Budget")
-                        .WithMany("Expenses")
-                        .HasForeignKey("BudgetId");
                 });
 
             modelBuilder.Entity("pcsHackathon2019.Models.Move", b =>

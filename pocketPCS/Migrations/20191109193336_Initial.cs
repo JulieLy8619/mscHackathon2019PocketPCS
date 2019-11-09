@@ -1,10 +1,9 @@
 ﻿using System;
-using Microsoft.EntityFrameworkCore.Metadata;
 using Microsoft.EntityFrameworkCore.Migrations;
 
-namespace pocketPCS.Data.Migrations
+namespace pocketPCS.Migrations
 {
-    public partial class CreateIdentitySchema : Migration
+    public partial class Initial : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -48,11 +47,66 @@ namespace pocketPCS.Data.Migrations
                 });
 
             migrationBuilder.CreateTable(
+                name: "BoardTable",
+                columns: table => new
+                {
+                    ID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    StartLocation = table.Column<string>(nullable: true),
+                    EndLocation = table.Column<string>(nullable: true),
+                    Amount = table.Column<double>(nullable: false),
+                    ItemDescription = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_BoardTable", x => x.ID);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "Budgets",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true),
+                    Allowances = table.Column<double>(nullable: false),
+                    Expenses = table.Column<double>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Budgets", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "PocketUsersTable",
+                columns: table => new
+                {
+                    Id = table.Column<string>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_PocketUsersTable", x => x.Id);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "ThreadTable",
+                columns: table => new
+                {
+                    ThreadID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    Name = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_ThreadTable", x => x.ThreadID);
+                });
+
+            migrationBuilder.CreateTable(
                 name: "AspNetRoleClaims",
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     RoleId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -73,7 +127,7 @@ namespace pocketPCS.Data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<int>(nullable: false)
-                        .Annotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn),
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     UserId = table.Column<string>(nullable: false),
                     ClaimType = table.Column<string>(nullable: true),
                     ClaimValue = table.Column<string>(nullable: true)
@@ -153,6 +207,53 @@ namespace pocketPCS.Data.Migrations
                         onDelete: ReferentialAction.Cascade);
                 });
 
+            migrationBuilder.CreateTable(
+                name: "Moves",
+                columns: table => new
+                {
+                    Id = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    UserId = table.Column<string>(nullable: true),
+                    StartDate = table.Column<DateTime>(nullable: false),
+                    EndDate = table.Column<DateTime>(nullable: false),
+                    BudgetId = table.Column<int>(nullable: false),
+                    Name = table.Column<string>(nullable: false),
+                    StartStation = table.Column<int>(nullable: false),
+                    EndStation = table.Column<int>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_Moves", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_Moves_Budgets_BudgetId",
+                        column: x => x.BudgetId,
+                        principalTable: "Budgets",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "CommentTable",
+                columns: table => new
+                {
+                    CommentID = table.Column<int>(nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
+                    ThreadID = table.Column<int>(nullable: false),
+                    UserName = table.Column<string>(nullable: true),
+                    Subject = table.Column<string>(nullable: true),
+                    Body = table.Column<string>(nullable: true)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_CommentTable", x => x.CommentID);
+                    table.ForeignKey(
+                        name: "FK_CommentTable_ThreadTable_ThreadID",
+                        column: x => x.ThreadID,
+                        principalTable: "ThreadTable",
+                        principalColumn: "ThreadID",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
                 table: "AspNetRoleClaims",
@@ -191,6 +292,16 @@ namespace pocketPCS.Data.Migrations
                 column: "NormalizedUserName",
                 unique: true,
                 filter: "[NormalizedUserName] IS NOT NULL");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_CommentTable_ThreadID",
+                table: "CommentTable",
+                column: "ThreadID");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Moves_BudgetId",
+                table: "Moves",
+                column: "BudgetId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -211,10 +322,28 @@ namespace pocketPCS.Data.Migrations
                 name: "AspNetUserTokens");
 
             migrationBuilder.DropTable(
+                name: "BoardTable");
+
+            migrationBuilder.DropTable(
+                name: "CommentTable");
+
+            migrationBuilder.DropTable(
+                name: "Moves");
+
+            migrationBuilder.DropTable(
+                name: "PocketUsersTable");
+
+            migrationBuilder.DropTable(
                 name: "AspNetRoles");
 
             migrationBuilder.DropTable(
                 name: "AspNetUsers");
+
+            migrationBuilder.DropTable(
+                name: "ThreadTable");
+
+            migrationBuilder.DropTable(
+                name: "Budgets");
         }
     }
 }

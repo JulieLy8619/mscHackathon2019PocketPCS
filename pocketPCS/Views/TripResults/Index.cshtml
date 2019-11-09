@@ -1,32 +1,25 @@
-<<<<<<< HEAD
-﻿@using pcsHackathon2019.Models
-@model Move
-=======
 @using pcsHackathon2019.Models
-@model Budget
->>>>>>> ababbed... additionalCost
+@model Move
+
+
 @{
     ViewData["Title"] = "Your Trip Results";
 }
 
 <h1>Your Trip Results</h1>
-<<<<<<< Updated upstream
-=======
-@{ 
-}
->>>>>>> Stashed changes
+
 
 
 <h2>Your total allowances are: </h2>
 @{ 
-    Console.WriteLine(Model.Budget.AllowanceTotal);
+    Console.WriteLine(Model.Budget.Allowances);
 
 }
 
 <h2>Your total budget is: </h2>
 
 @{ 
-    Console.WriteLine(Model.Budget.ExpenseTotal);
+    Console.WriteLine(Model.Budget.Expenses);
 }
 
 
@@ -34,7 +27,7 @@
 @{ 
     double delta;
 
-    delta = (Model.Budget.ExpenseTotal - Model.Budget.AllowanceTotal);
+    delta = (Model.Budget.Expenses - Model.Budget.Allowances);
 }
 
 @{ 

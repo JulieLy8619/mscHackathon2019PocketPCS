@@ -23,7 +23,7 @@ namespace pocketPCS.Controllers
         {
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var user = context.Users
+            var user = context.PocketUsersTable
                 .Where(u => u.Id == userId)                
                 .FirstOrDefault();
 

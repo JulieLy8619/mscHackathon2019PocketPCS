@@ -14,8 +14,13 @@
     <p>Enter travel start date <input asp-for="StartDate" /></p>
     <p>What is your end location? <input asp-for="EndStation" /></p>
     <p>Enter travel end date <input asp-for="EndDate" /></p>
-    <p>What is your budget? <input asp-for="Budget" /></p>
+    @*<p>What is your budget? <input asp-for="Budget" /></p>*@
+    <p>What are your expenses?</p>
+    <p>Lodging: </p>
+    <p>Food: </p>
+    <p>Gas:</p>
 
-    <button onclick="location.href='@Url.Action("Index", "TripResults")';return false;">Submit</button>
+    <button type="submit">Submit</button>
+    @*<button onclick="location.href='@Url.Action("Index", "YourTrip")';return false;">Submit</button>*@
 
 </form>

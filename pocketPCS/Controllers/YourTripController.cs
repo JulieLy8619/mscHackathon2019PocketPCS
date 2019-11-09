@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Security.Claims;
 using System.Threading.Tasks;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using pcsHackathon2019.Models;
@@ -10,6 +11,7 @@ using pocketPCS.Data;
 
 namespace pcsHackathon2019.Controllers
 {
+    [Authorize]
     public class YourTripController : Controller
     {
         private readonly ApplicationDbContext context;
@@ -28,10 +30,10 @@ namespace pcsHackathon2019.Controllers
         public IActionResult Index(Move move)
         {
 
-            if (!ModelState.IsValid)
-            {
-                return View(move);
-            }
+            //if (!ModelState.IsValid)
+            //{
+            //    return View(move);
+            //}
 
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
             var user = context.Users

@@ -6,6 +6,9 @@ namespace pcsHackathon2019.Models
 {
     public class Move
     {
+       
+        public int Id { get; set; } 
+
         public string UserId { get; set; }
 
         [Required]

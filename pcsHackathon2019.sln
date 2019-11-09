@@ -1,11 +1,9 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.902
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.29424.173
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pocketPCS", "pocketPCS\pocketPCS.csproj", "{D9D4CD5E-FEE6-4CE9-BB0F-B9EAD93C0C28}"
-EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "pcsHackathon2019", "pcsHackathon2019\pcsHackathon2019.csproj", "{65EE2FD8-9079-47AD-867F-077574056C2C}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -17,10 +15,6 @@ Global
 		{D9D4CD5E-FEE6-4CE9-BB0F-B9EAD93C0C28}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{D9D4CD5E-FEE6-4CE9-BB0F-B9EAD93C0C28}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{D9D4CD5E-FEE6-4CE9-BB0F-B9EAD93C0C28}.Release|Any CPU.Build.0 = Release|Any CPU
-		{65EE2FD8-9079-47AD-867F-077574056C2C}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{65EE2FD8-9079-47AD-867F-077574056C2C}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{65EE2FD8-9079-47AD-867F-077574056C2C}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{65EE2FD8-9079-47AD-867F-077574056C2C}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

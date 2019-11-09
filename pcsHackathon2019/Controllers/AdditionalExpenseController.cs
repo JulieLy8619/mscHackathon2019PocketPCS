@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using pocketPCS.Data;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace pcsHackathon2019.Controllers
+namespace pocketPCS.Controllers
 {
     public class AdditionalExpenseController : Controller
     {
@@ -55,12 +56,12 @@ namespace pcsHackathon2019.Controllers
         //this currently doesn't exists in the MODELS
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddExpense([Bind("ID,Start,End,Amount,Description")] AddExpenseClass expense)
+        public async Task<IActionResult> AddExpense([Bind("ID,Start,End,Amount,Description")] AdditionalCost expense)
         {
-            AddExpenseClass newExpense = expense;
+            AdditionalCost newExpense = expense;
             if (ModelState.IsValid)
             {
-                await context.BoardTable.Add(newExpense);
+                context.BoardTable.Add(newExpense);
                 await context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

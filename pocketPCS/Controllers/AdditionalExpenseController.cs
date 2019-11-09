@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
+using pocketPCS.Data;
+using pocketPCS.Models;
 
 // For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
 
-namespace pcsHackathon2019.Controllers
+namespace pocketPCS.Controllers
 {
     public class AdditionalExpenseController : Controller
     {
@@ -16,6 +19,10 @@ namespace pcsHackathon2019.Controllers
         {
             this.context = context;
         }
+
+        //need to check table name in data folder-> dbcontext
+        //if I add myown then add this to dbcontext file
+        //    public DbSet<AddExpenseClass> BoardTable { get; set; }
 
         /// <summary>
         /// gets all additional expenses added by users
@@ -51,12 +58,12 @@ namespace pcsHackathon2019.Controllers
         //this currently doesn't exists in the MODELS
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddExpense([Bind("ID,StartLocation,EndLocation,Amount,Description")] AdditionalCost expense)
+        public async Task<IActionResult> AddExpense([Bind("ID,Start,End,Amount,Description")] AdditionalCost expense)
         {
-            AddExpenseClass newExpense = expense;
+            AdditionalCost newExpense = expense;
             if (ModelState.IsValid)
             {
-                await context.BoardTable.Add(newExpense);
+                context.BoardTable.Add(newExpense);
                 await context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }

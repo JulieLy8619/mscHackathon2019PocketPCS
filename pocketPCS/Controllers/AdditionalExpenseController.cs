@@ -17,10 +17,6 @@ namespace pcsHackathon2019.Controllers
             this.context = context;
         }
 
-        //need to check table name in data folder-> dbcontext
-        //if I add myown then add this to dbcontext file
-        //    public DbSet<AddExpenseClass> BoardTable { get; set; }
-
         /// <summary>
         /// gets all additional expenses added by users
         /// </summary>
@@ -55,7 +51,7 @@ namespace pcsHackathon2019.Controllers
         //this currently doesn't exists in the MODELS
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddExpense([Bind("ID,Start,End,Amount,Description")] AddExpenseClass expense)
+        public async Task<IActionResult> AddExpense([Bind("ID,StartLocation,EndLocation,Amount,Description")] AdditionalCost expense)
         {
             AddExpenseClass newExpense = expense;
             if (ModelState.IsValid)

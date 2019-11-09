@@ -9,8 +9,12 @@
 
 
 <form asp-controller="YourTrip" asp-action="Index" method="post">
-    
+
+    <p>What is your start location? <input asp-for="StartStation" /></p>
     <p>Enter travel start date <input asp-for="StartDate" /></p>
+    <p>What is your end location? <input asp-for="EndStation" /></p>
     <p>Enter travel end date <input asp-for="EndDate" /></p>
+    <p>What is your budget? <input asp-for="Budget" /></p>
+
     <button type="submit">Submit</button>
 </form>

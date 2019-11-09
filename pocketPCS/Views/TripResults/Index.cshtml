@@ -11,34 +11,27 @@
 <h1>Your Trip Results</h1>
 
 
-<h2>Your total allowances are: </h2>
-@{ 
-    Console.WriteLine(Model.Budget.Allowances);
-
-}
-
-<h2>Your total budget is: </h2>
-
-@{ 
-    Console.WriteLine(Model.Budget.Expenses);
-}
+<h2>Your total allowances are: $@Model.Budget.Allowances</h2>
 
 
-<h2>The difference is: </h2>
-@{ 
+<h2>Your total expenses are: $@Model.Budget.Expenses</h2>
+
+
+@{
     double delta;
 
-    delta = (Model.Budget.Expenses - Model.Budget.Allowances);
-}
+    delta = (Model.Budget.Allowances - Model.Budget.Expenses);
 
-@{ 
     if (delta > 0)
     {
-        Console.WriteLine("Your remaining funds are: {0}", delta);
+        <h2>Your remaining funds are:  $@delta</h2>
     }
 
     else
     {
-        Console.WriteLine("You've overspent by: {0}", delta);
+        <h2 style="color:red;">You will need to save:  $@Math.Abs(delta)</h2>
+        
     }
 }
+
+

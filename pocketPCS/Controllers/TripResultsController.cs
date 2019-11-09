@@ -28,6 +28,9 @@ namespace pocketPCS.Controllers
             //    .FirstOrDefault();
 
             var move = context.Moves.FirstOrDefault();
+            move.Budget = new Budget();
+            move.Budget.Expenses = 4000;
+            move.Budget.Allowances = 3000;
 
             //if ( user == null || user.Moves == null)
             //{
@@ -35,7 +38,7 @@ namespace pocketPCS.Controllers
             //}
 
             //var move = user.Moves.FirstOrDefault();
-            
+
 
             return View(move);
         }

@@ -24,11 +24,15 @@ namespace pocketPCS.Controllers
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
             var user = context.Users
-                .Where(u => u.Id == userId)
-                .Include(u => u.Moves)
+                .Where(u => u.Id == userId)                
                 .FirstOrDefault();
 
-            if( user == null || user.Moves == null)
+            //var user = context.Users
+            //    .Where(u => u.Id == userId)
+            //    .Include(u => u.Moves)
+            //    .FirstOrDefault();
+
+            if ( user == null || user.Moves == null)
             {
                 return RedirectToAction("Index", "Home");
             }

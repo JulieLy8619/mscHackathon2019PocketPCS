@@ -37,7 +37,8 @@ namespace pocketPCS.Controllers
                 return RedirectToAction("Index", "Home");
             }
 
-            var move = user.Moves.FirstOrDefault();            
+            var move = user.Moves.FirstOrDefault();
+            
 
             return View(move);
         }

@@ -16,5 +16,6 @@
     <p>Enter travel end date <input asp-for="EndDate" /></p>
     <p>What is your budget? <input asp-for="Budget" /></p>
 
-    <button type="submit">Submit</button>
+    <button onclick="location.href='@Url.Action("Index", "TripResults")';return false;">Submit</button>
+
 </form>

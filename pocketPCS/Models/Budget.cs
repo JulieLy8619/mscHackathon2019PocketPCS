@@ -6,6 +6,8 @@ namespace pcsHackathon2019.Models
     public class Budget
     {
         public string Name;
+
+        public Move move;
         public virtual ICollection<Allowance> Allowances { get; set; }
         public virtual ICollection<Expense> Expenses { get; set; }
         public double ExpenseTotal

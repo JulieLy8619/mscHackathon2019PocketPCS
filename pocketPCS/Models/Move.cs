@@ -6,6 +6,8 @@ namespace pcsHackathon2019.Models
 {
     public class Move
     {
+        public string UserId { get; set; }
+
         [Required]
         [DisplayName("Start Date")]
         [DisplayFormat(ApplyFormatInEditMode = true, DataFormatString = "{0:MM/dd/yy}")]

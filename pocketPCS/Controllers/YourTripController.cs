@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using pcsHackathon2019.Models;
@@ -25,18 +26,18 @@ namespace pcsHackathon2019.Controllers
         [HttpPost]
         public IActionResult Index(Move move)
         {
-            if (ModelState.IsValid)
+
+            if (!ModelState.IsValid)
             {
-                context.Moves.Add(move);
-                context.SaveChanges();
-            }
-            else
-            {
-                return View();
+                return View(move);
             }
 
+            string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
+            move.UserId = userId;
+            context.Moves.Add(move);
+            context.SaveChanges();
+            return RedirectToAction("Index", "Budget", move); 
 
-            return RedirectToAction("Index", "Budget", move);
         }
 
     }

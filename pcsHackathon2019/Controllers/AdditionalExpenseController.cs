@@ -10,7 +10,16 @@ namespace pcsHackathon2019.Controllers
 {
     public class AdditionalExpenseController : Controller
     {
-        //need to add thing to associate DBContext to _context
+        private readonly ApplicationDbContext context;
+
+        public AdditionalExpenseController(ApplicationDbContext context)
+        {
+            this.context = context;
+        }
+
+        //need to check table name in data folder-> dbcontext
+        //if I add myown then add this to dbcontext file
+        //    public DbSet<AddExpenseClass> BoardTable { get; set; }
 
         /// <summary>
         /// gets all additional expenses added by users
@@ -18,13 +27,13 @@ namespace pcsHackathon2019.Controllers
         /// <returns>list of expenses</returns>
         public async Task<IActionResult> Index()
         {
-            return View(await _context.BoardTable.ToListAsync());
+            return View(await context.BoardTable.ToListAsync());
         }
 
         //if want to add search
         //public async Task<IActionResult> Index(string searchString)
         //{
-        //    var exps = from e in _context.BoardTable
+        //    var exps = from e in context.BoardTable
         //               select e;
         //    if (!String.IsNullOrEmpty(searchString))
         //    {
@@ -43,6 +52,7 @@ namespace pcsHackathon2019.Controllers
         }
 
         //will need to double check if those are property names from model for the BIND
+        //this currently doesn't exists in the MODELS
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> AddExpense([Bind("ID,Start,End,Amount,Description")] AddExpenseClass expense)
@@ -50,8 +60,8 @@ namespace pcsHackathon2019.Controllers
             AddExpenseClass newExpense = expense;
             if (ModelState.IsValid)
             {
-                await _context.Boardtable.Add(newExpense);
-                await _context.SaveChangesAsync();
+                await context.BoardTable.Add(newExpense);
+                await context.SaveChangesAsync();
                 return RedirectToAction(nameof(Index));
             }
             return View(expense);

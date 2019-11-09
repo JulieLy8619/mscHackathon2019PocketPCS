@@ -1,0 +1,37 @@
+@using pcsHackathon2019.Models
+@model Move
+
+
+@{
+    ViewData["Title"] = "Your Trip Results";
+}
+
+<img src="~/Images/TripResults.jpg" class="img-fluid" style="width: 750px">
+
+<h1>Your Trip Results</h1>
+
+
+<h2>Your total allowances are: $@Model.Budget.Allowances</h2>
+
+
+<h2>Your total expenses are: $@Model.Budget.Expenses</h2>
+
+
+@{
+    double delta;
+
+    delta = (Model.Budget.Allowances - Model.Budget.Expenses);
+
+    if (delta > 0)
+    {
+        <h2>Your remaining funds are:  $@delta</h2>
+    }
+
+    else
+    {
+        <h2 style="color:red;">You will need to save:  $@Math.Abs(delta)</h2>
+        
+    }
+}
+
+

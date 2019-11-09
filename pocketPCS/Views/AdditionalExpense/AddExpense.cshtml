@@ -1,0 +1,29 @@
+﻿@model pocketPCS.Models.AdditionalCost
+
+<h1>
+    Add an expense!
+</h1>
+
+<a asp-action="Index">Back to List</a>
+
+<div>
+    <form asp-action="AddExpense">
+        <div>
+            <label asp-for="StartLocation"></label>
+            <input asp-for="StartLocation" />
+        </div>
+        <div>
+            <label asp-for="EndLocation"></label>
+            <input asp-for="EndLocation" />
+        </div>
+        <div>
+            <label asp-for="Amount"></label>
+            <input asp-for="Amount" />
+        </div>
+        <div>
+            <label asp-for="ItemDescription"></label>
+            <input asp-for="ItemDescription" />
+        </div>
+        <input type="submit" value="Add" />
+    </form>
+</div>

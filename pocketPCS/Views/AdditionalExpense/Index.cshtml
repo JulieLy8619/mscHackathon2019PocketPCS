@@ -1,0 +1,43 @@
+﻿@model IEnumerable<pocketPCS.Models.AdditionalCost>
+
+<h1>Possible Unexpected Costs</h1>
+
+<a asp-action="AddExpense">Add Expense</a>
+
+<table>
+    <thead>
+        <tr>
+            <th>
+                Start Location
+            </th>
+            <th>
+                End Location
+            </th>
+            <th>
+                Amount
+            </th>
+            <th>
+                Item Description
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.StartLocation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.EndLocation)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Amount)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.ItemDescription)
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

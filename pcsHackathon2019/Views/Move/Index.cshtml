@@ -1,0 +1,13 @@
+﻿@using pcsHackathon2019.Models
+@model Move
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h2>YourPlan</h2>
+
+
+<form asp-controller="YourTrip" asp-action="Index" method="post">
+    <input asp-for="StartDate" /> <br />
+    <button type="submit">Submit</button>
+</form>

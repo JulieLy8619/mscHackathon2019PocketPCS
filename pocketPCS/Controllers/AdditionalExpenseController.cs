@@ -58,7 +58,7 @@ namespace pocketPCS.Controllers
         //this currently doesn't exists in the MODELS
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> AddExpense([Bind("ID,Start,End,Amount,Description")] AdditionalCost expense)
+        public async Task<IActionResult> AddExpense([Bind("ID,StartLocation,EndLocation,Amount,ItemDescription")] AdditionalCost expense) // if this errors, remove ID
         {
             AdditionalCost newExpense = expense;
             if (ModelState.IsValid)

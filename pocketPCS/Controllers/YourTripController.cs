@@ -58,6 +58,9 @@ namespace pcsHackathon2019.Controllers
                 user.Moves = new List<Move>();
                 moveId = 1;
                 move.UserId = userId;
+                move.Budget = new Budget();
+                move.Budget.Expenses = 4000;
+                move.Budget.Allowances = 3000;                
                 user.Moves.Add(move);
 
                 context.Users.Add(user);

@@ -9,32 +9,32 @@ namespace pcsHackathon2019.Models
         [Key]
         public int Id { get; set; }
         public string Name {get; set;}      
-        public virtual ICollection<Allowance> Allowances { get; set; }
-        public virtual ICollection<Expense> Expenses { get; set; }
-        public double ExpenseTotal
-        {
-            get
-            {
-                double sum = 0.0;
-                foreach (var expense in Expenses)
-                {
-                    sum += expense.Cost;
-                }
-                return sum;
-            }
-        }
-        public double AllowanceTotal
-        {
-            get
-            {
-                double sum = 0.0;
-                foreach (var allowance in Allowances)
-                {
-                    sum += allowance.Cost;
-                }
-                return sum;
-            }
-        }
+        public double Allowances { get; set; }
+        public double Expenses { get; set; }
+        //public double ExpenseTotal
+        //{
+        //    get
+        //    {
+        //        double sum = 0.0;
+        //        foreach (var expense in Expenses)
+        //        {
+        //            sum += expense.Cost;
+        //        }
+        //        return sum;
+        //    }
+        //}
+        //public double AllowanceTotal
+        //{
+        //    get
+        //    {
+        //        double sum = 0.0;
+        //        foreach (var allowance in Allowances)
+        //        {
+        //            sum += allowance.Cost;
+        //        }
+        //        return sum;
+        //    }
+        //}
 
         //public void AddAllowance(Allowance allowance)
         //{

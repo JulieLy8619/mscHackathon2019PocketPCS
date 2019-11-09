@@ -19,25 +19,23 @@ namespace pocketPCS.Controllers
             this.context = context;
         }
 
-        public IActionResult Index()
+        public IActionResult Index(Move move)
         {
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
-            var user = context.Users
-                .Where(u => u.Id == userId)                
-                .FirstOrDefault();
-
-            //var user = context.Users
-            //    .Where(u => u.Id == userId)
-            //    .Include(u => u.Moves)
+            //var user = context.PocketUsersTable
+            //    .Where(u => u.Id == userId)                
             //    .FirstOrDefault();
 
-            if ( user == null || user.Moves == null)
-            {
-                return RedirectToAction("Index", "Home");
-            }
+          
 
-            var move = user.Moves.FirstOrDefault();            
+            //if ( user == null || user.Moves == null)
+            //{
+            //    return RedirectToAction("Index", "Home");
+            //}
+
+            //var move = user.Moves.FirstOrDefault();
+            
 
             return View(move);
         }

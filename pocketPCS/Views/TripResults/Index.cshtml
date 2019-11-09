@@ -1,5 +1,7 @@
-﻿@using pcsHackathon2019.Models
+@using pcsHackathon2019.Models
 @model Move
+
+
 @{
     ViewData["Title"] = "Your Trip Results";
 }
@@ -7,29 +9,33 @@
 <h1>Your Trip Results</h1>
 
 
+
 <h2>Your total allowances are: </h2>
 @{ 
-    Console.WriteLine(Model.Budget.AllowanceTotal);
+    Console.WriteLine(Model.Budget.Allowances);
+
 }
 
 <h2>Your total budget is: </h2>
 
 @{ 
-    Console.WriteLine(Model.Budget.ExpenseTotal);
+    Console.WriteLine(Model.Budget.Expenses);
 }
 
 
 <h2>The difference is: </h2>
 @{ 
     double delta;
-    delta = (Model.Budget.ExpenseTotal - Model.Budget.AllowanceTotal);
+
+    delta = (Model.Budget.Expenses - Model.Budget.Allowances);
 }
 
 @{ 
-    if (delta >= 0)
+    if (delta > 0)
     {
         Console.WriteLine("Your remaining funds are: {0}", delta);
     }
+
     else
     {
         Console.WriteLine("You've overspent by: {0}", delta);

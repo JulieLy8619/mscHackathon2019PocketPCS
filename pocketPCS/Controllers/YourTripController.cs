@@ -30,51 +30,59 @@ namespace pcsHackathon2019.Controllers
         [HttpPost]
         public IActionResult Index(Move move)
         {
-
-            //if (!ModelState.IsValid)
-            //{
-            //    return View(move);
-            //}
-
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
-            var user = context.Users
+            var user = context.PocketUsersTable
                 .Where(u => u.Id == userId)                
-                .FirstOrDefault(); 
+                .FirstOrDefault();
 
-            if(user == null)
-            {
-                user = new User();
-                user.Id = userId;
-            }
+            int moveId;
+
+            //if (user == null)
+            //{
+            //    user = new User();
+            //    user.Id = userId;
+
+            //    user.Moves = new List<Move>();
+            //    move.Id = 1;
+            //    move.UserId = userId;
+            //    move.Budget = new Budget();
+            //    move.Budget.Expenses = 4000;
+            //    move.Budget.Allowances = 3000;
+            //    user.Moves.Add(move);
+
+            //    context.PocketUsersTable.Add(user);
+            //}
+            //else
+            //{                
+            //    moveId = user.Moves.Count() + 1;
+            //    move.Id = moveId;
+            //    move.UserId = userId;
+            //    move.Budget = new Budget();
+            //    move.Budget.Expenses = 4000;
+            //    move.Budget.Allowances = 3000;
+
+            //    context.Moves.Add(move);
+            //}
 
             //var user = context.Users
             //    .Where(u => u.Id == userId)
             //    .Include(u => u.Moves)
             //    .FirstOrDefault();
 
-            int moveId; 
-            if(user.Moves == null)
-            {
-                user.Moves = new List<Move>();
-                moveId = 1;
-                move.UserId = userId;
-                user.Moves.Add(move);
+            
+            
+            move.UserId = "";
+            move.Name = move.StartStation + "-" + move.EndStation;
+            move.Budget = new Budget();
+            move.Budget.Expenses = 4000;
+            move.Budget.Allowances = 3000;
 
-                context.Users.Add(user);
-            }
-            else
-            {
-                moveId = user.Moves.Count() + 1;
-                move.Id = moveId;
-                move.UserId = userId;
+            context.Moves.Add(move);
 
-                context.Moves.Add(move);
-                
-            }
             context.SaveChanges();
 
 
-            return RedirectToAction("Index", "TripResults"); 
+            return RedirectToAction("Index", "TripResults", move); 
         }
 
     }

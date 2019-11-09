@@ -10,8 +10,8 @@ using pocketPCS.Data;
 namespace pocketPCS.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20191109193336_Initial")]
-    partial class Initial
+    [Migration("20191109203658_initial")]
+    partial class initial
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
+using pcsHackathon2019.Models;
 
 namespace pocketPCS.Data
 {
@@ -12,5 +13,8 @@ namespace pocketPCS.Data
             : base(options)
         {
         }
+
+        public DbSet<Move> Moves { get; set; }
+       
     }
 }

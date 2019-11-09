@@ -10,7 +10,6 @@
 <h2>Your total allowances are: </h2>
 @{ 
     Console.WriteLine(Model.Budget.AllowanceTotal);
-
 }
 
 <h2>Your total budget is: </h2>
@@ -23,7 +22,6 @@
 <h2>The difference is: </h2>
 @{ 
     double delta;
-
     delta = (Model.Budget.ExpenseTotal - Model.Budget.AllowanceTotal);
 }
 
@@ -32,7 +30,6 @@
     {
         Console.WriteLine("Your remaining funds are: {0}", delta);
     }
-
     else
     {
         Console.WriteLine("You've overspent by: {0}", delta);

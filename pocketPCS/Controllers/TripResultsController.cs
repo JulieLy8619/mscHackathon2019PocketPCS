@@ -19,7 +19,7 @@ namespace pocketPCS.Controllers
             this.context = context;
         }
 
-        public IActionResult Index(Move move)
+        public IActionResult Index()
         {
             string userId = User.FindFirstValue(ClaimTypes.NameIdentifier);
 
@@ -27,7 +27,7 @@ namespace pocketPCS.Controllers
             //    .Where(u => u.Id == userId)                
             //    .FirstOrDefault();
 
-          
+            var move = context.Moves.FirstOrDefault();
 
             //if ( user == null || user.Moves == null)
             //{

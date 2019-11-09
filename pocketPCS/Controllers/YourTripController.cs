@@ -82,7 +82,7 @@ namespace pcsHackathon2019.Controllers
             context.SaveChanges();
 
 
-            return RedirectToAction("Index", "TripResults", move); 
+            return RedirectToAction("Index", "TripResults"); 
         }
 
     }
